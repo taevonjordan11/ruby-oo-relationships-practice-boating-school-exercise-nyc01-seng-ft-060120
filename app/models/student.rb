@@ -20,11 +20,14 @@ class Student
     @@all.find{|student| student.first_name == first_name}
   end
 
-
-  def grade_percentage
-    test = BoatingTest.all.select do |tests|
+  def tests
+    BoatingTest.all.select do |tests|
       tests.student == self
     end
+  end
+
+  def grade_percentage
+    test = self.tests
 
     passed = test.select do |tests|
       tests.status == "passed"
